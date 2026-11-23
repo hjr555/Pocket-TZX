@@ -67,6 +67,13 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1 -Restore .\backups\<backu
 - **`REC`** (front): Flips audio polarity (`NORM` / `INV`) during playback if a particular machine prefers inverted signal edges.
 - **`Power`** (left side): Turns the recorder off.
 
+## Not Yet Supported
+
+- **Saving / recording to `.TZX`**: Playback only for now (regular audio recording still works in the stock Record mode).
+- **Other tape formats**: No `.TAP` (ZX Spectrum), Commodore 64 (`.TAP`), or Amstrad CPC (`.CDT`) support yet.
+- **Rare `.TZX` block types**: CSW (`0x18`) and Generalized Data (`0x19`) blocks are skipped.
+- **Windows installer**: `install.ps1` is included, though it has not been tested on a Windows PC yet.
+
 ## Technical Notes
 
 Hardware notes, memory maps, build scripts, and recovery instructions are in [docs/](docs/) and [firmware-stock/RECOVERY.md](firmware-stock/RECOVERY.md).
