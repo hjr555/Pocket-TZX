@@ -4,11 +4,11 @@ Custom firmware mode for cheap Actions Semiconductor ATJ2157 digital voice recor
 
 It adds a 6th **TZX Mode** entry to the main menu so you can play ZX Spectrum `.TZX` tape files straight from a microSD card over a 3.5 mm audio cable, while keeping all 5 original recorder modes intact.
 
-<!-- Drop your photos into images/ and uncomment these lines:
-![Recorder](images/device.jpg)
-![TZX Mode menu](images/menu.jpg)
-![Playing a TZX file](images/playing.jpg)
--->
+| Main Menu | File Browser | Playing a Tape |
+| :---: | :---: | :---: |
+| ![Main Menu TZX Mode](media/device-menu.jpg) | ![TZX File Browser](media/tzx-browser.jpg) | ![Playing a TZX File](media/tzx-playing.jpg) |
+
+![Loading Spellbound on a ZX Spectrum](media/spectrum-loading.jpg)
 
 ## Compatible Hardware
 
@@ -16,21 +16,21 @@ Tested on the generic unbranded "DIGITAL VOICE RECORDER" with:
 - Actions `ATJ2157` chip (USB `10d6:1101`, stock firmware `1.101.56`)
 - MicroSD card slot
 - Small 128x64 monochrome LCD
-- Front buttons: Record, Play/Pause, Stop
-- Right side: M, FWD, RWD
-- Left side: +, -, Power
+- Front buttons: `REC`, `PLAY/PAUSE`, `STOP`
+- Right side: `M`, `FWD`, `RWD`
+- Left side: `+`, `-`, `Power`
 
-If you are not sure whether yours matches, run the read-only compatibility check first.
+Not sure if yours matches? Run the read-only compatibility check first.
 
 ## Installing
 
-Plug the recorder into USB (with a microSD card inserted) and wait for the "connected" icon on screen. Python 3 is required (`libusb` on Linux; Windows installs its own WinUSB driver automatically).
+Plug the recorder into USB (with a microSD card inserted) and wait for the "connected" icon on screen. Python 3 is required (`libusb` on Linux; Windows sets up its own WinUSB driver automatically).
 
 From the release installer folder (built with `python3 tools/make_release_bundle.py`):
 
 **Linux:**
 ```bash
-./install.sh --check   # optional, read-only
+./install.sh --check   # optional, read-only compatibility check
 ./install.sh           # backs up stock firmware, then installs
 ```
 
@@ -40,9 +40,9 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1 -Check
 powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
-A full backup of your original firmware is saved to `backups/` before anything is written.
+A full backup of your original firmware is saved in `backups/` before anything is written.
 
-To go back to stock firmware at any time:
+To restore stock firmware at any time:
 ```bash
 ./install.sh --restore backups/<backup_folder>
 ```
@@ -50,19 +50,22 @@ To go back to stock firmware at any time:
 powershell -ExecutionPolicy Bypass -File .\install.ps1 -Restore .\backups\<backup_folder>
 ```
 
-## Usage
+## Using TZX Mode
 
-Put your `.TZX` files in a `/TZX` folder on the microSD card (subfolders work too). Select **TZX Mode** from the main menu, plug a 3.5 mm cable into the EAR input on your Spectrum / Spectrum Next, and press Play.
+1. Copy your `.TZX` files into a `/TZX` folder on the microSD card (subfolders work too).
+2. Unplug the recorder, scroll to **TZX Mode** on the main menu, and press `PLAY/PAUSE`.
+3. Connect a 3.5 mm audio cable from the headphone jack to the EAR input on your Spectrum / Spectrum Next (volume around `28-31` works well).
+4. Pick a tape and press `PLAY/PAUSE` to start loading.
 
-| Button | Browser | Playback |
-|---|---|---|
-| Play/Pause | Open folder / load tape | Play / pause / resume |
-| Stop | Up folder / exit to menu | Back to file list |
-| FWD / RWD | Move selection | Next / previous block |
-| + / - | Volume | Volume |
-| M | Toggle 48K / 128K mode | Toggle 48K / 128K mode |
-| Record | - | Invert polarity (NORM / INV) |
-| Power | Power off | Power off |
+### Buttons
+
+- **`PLAY/PAUSE`** (front): Opens a folder or loads the selected `.TZX` file. During playback, pauses or resumes (also resumes after a multi-load tape stop).
+- **`STOP`** (front): Goes up a folder (or back to the main menu from the top level). During playback, stops the tape and returns to the file list.
+- **`FWD` / `RWD`** (right side): Moves up and down the file list. During playback, skips to the next or previous tape block.
+- **`+` / `-`** (left side): Turns the output volume up or down (`0-31`).
+- **`M`** (right side): Switches between **48K** and **128K** mode (shown in the top-right corner). In 48K mode, tapes with a "Stop if 48K" block pause automatically; switch to 128K mode to play straight through.
+- **`REC`** (front): Flips audio polarity (`NORM` / `INV`) during playback if a particular machine prefers inverted signal edges.
+- **`Power`** (left side): Turns the recorder off.
 
 ## Technical Notes
 

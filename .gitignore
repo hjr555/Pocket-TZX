@@ -21,6 +21,10 @@
 *.dmg
 *.pkg
 
+# Raw phone photos (keep cropped EXIF-stripped JPGs only)
+*.heic
+*.HEIC
+
 # AI/agent directories, compiled artifacts, Python cache & runtime backups
 .gemini/
 *.elf
