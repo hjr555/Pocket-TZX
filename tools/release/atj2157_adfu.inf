@@ -1,0 +1,41 @@
+; Windows 10/11 Inbox WinUSB Driver INF for Actions Semiconductor ATJ2157 ADFU (10d6:10d6)
+; Uses 100% inbox winusb.sys with zero third-party kernel binaries.
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = USBDevice
+ClassGuid   = {88BAE032-5A81-49f0-BC3D-A4FF138216D6}
+Provider    = %ManufacturerName%
+CatalogFile = atj2157_adfu.cat
+DriverVer   = 11/23/2026,1.0.0.0
+PnpLockdown = 1
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64,NTx86,NTARM64
+
+[Standard.NTamd64]
+%DeviceName% = USB_Install, USB\VID_10D6&PID_10D6
+
+[Standard.NTx86]
+%DeviceName% = USB_Install, USB\VID_10D6&PID_10D6
+
+[Standard.NTARM64]
+%DeviceName% = USB_Install, USB\VID_10D6&PID_10D6
+
+[USB_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include = winusb.inf
+Needs   = WINUSB.NT.Services
+
+[USB_Install.HW]
+AddReg = Dev_AddReg
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{7c6b9a84-4e21-4d8a-9b2d-10d610d60001}"
+
+[Strings]
+ManufacturerName = "TZX Mode Project"
+DeviceName       = "Actions ATJ2157 ADFU Recovery Device"

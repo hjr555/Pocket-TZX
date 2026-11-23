@@ -1,0 +1,43 @@
+# Reverse-Engineering & Firmware Hygiene (per Global Rules)
+*.bin
+*.fw
+*.hex
+*.lfi
+*.brec
+*.mbrec
+*.img
+*.iso
+*.pak
+*.ubi
+*.ubifs
+*.zip
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+*.exe
+*.msi
+*.cab
+*.dmg
+*.pkg
+
+# AI/agent directories, compiled artifacts, Python cache & runtime backups
+.gemini/
+*.elf
+*.o
+*.d
+*.cat
+*.cdf
+__pycache__/
+*.py[cod]
+backups/
+
+# Local dumps, firmware backups (except SHA256SUMS & RECOVERY.md), and build/dist/vendor trees
+dumps/
+build/
+dist/
+vendor/
+firmware-*/*
+!firmware-*/SHA256SUMS
+!firmware-*/RECOVERY.md
+!firmware-*/*.md

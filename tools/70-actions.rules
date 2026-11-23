@@ -1,0 +1,4 @@
+# Actions Semiconductor Mass Storage (10d6:1101) & ADFU Boot ROM (10d6:10d6)
+# Named 70-actions.rules so TAG+="uaccess" runs BEFORE systemd's 73-seat-late.rules.
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="10d6", ATTR{idProduct}=="10d6", MODE="0666", TAG+="uaccess"
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="10d6", ATTR{idProduct}=="1101", MODE="0666", TAG+="uaccess"
